@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GapGram</string>
+
+    <string name="gender_prompt">Not Specified</string>
+
+    <string-array name="gender_arrays">
+        <item>Not Specified</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+</resources>
