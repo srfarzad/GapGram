@@ -32,6 +32,8 @@ public class WebserviceCaller {
                     iResponse.onSuccess(response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
             }
 

@@ -49,7 +49,8 @@
                 android:textSize="14sp"
                 android:textColor="@color/colorText"/>
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -70,7 +71,8 @@
                 android:textSize="14sp"
                 android:textColor="@color/colorText"/>
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edt_userName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -91,7 +93,8 @@
                 android:textSize="14sp"
                 android:textColor="@color/colorText"/>
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edt_website"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -112,7 +115,8 @@
                 android:textSize="14sp"
                 android:textColor="@color/colorText"/>
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edt_bio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -162,7 +166,8 @@
                 android:textSize="14sp"
                 android:textColor="@color/textEditPart2"/>
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -183,7 +188,8 @@
                 android:textSize="14sp"
                 android:textColor="@color/textEditPart2"/>
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edt_phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -205,6 +211,7 @@
                 android:textColor="@color/textEditPart2"/>
 
             <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spi_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Spinner.Underlined"

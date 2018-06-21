@@ -233,11 +233,20 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onSuccess(List responseBody) {
 
-                recyclerView.setAdapter(new PostsAdapter(getApplicationContext()
-                ,responseBody));
 
-                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()
-                ,LinearLayoutManager.VERTICAL,false));
+
+           /*     try{
+                    recyclerView.setAdapter(new PostsAdapter(getApplicationContext()
+                            ,responseBody));
+
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()
+                            ,LinearLayoutManager.VERTICAL,false));
+                }
+                catch (Exception e)
+                {
+
+                }
+*/
 
             }
 

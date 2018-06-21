@@ -13,7 +13,7 @@ public interface ApiInterface {
     @GET("GetPostCount")
     Call<ResponseBody> getPostCount();
 
-    @GET("GetPostTables")
+    @GET("GetAllPost")
     Call<List<Posts>> getPosts();
 
 

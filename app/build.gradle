@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'realm-android'
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -16,6 +16,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    realm {
+        syncEnabled = true;
     }
 }
 
@@ -38,4 +42,5 @@ dependencies {
     implementation files('libs/picasso-2.5.2.jar')
     implementation project(':framework')
     implementation 'com.karumi:dexter:4.2.0'
+    implementation 'io.realm:realm-annotations-processor:5.3.0'
 }

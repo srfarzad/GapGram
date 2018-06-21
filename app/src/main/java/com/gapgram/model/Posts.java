@@ -9,57 +9,57 @@ import com.google.gson.annotations.SerializedName;
 
 public class Posts implements Parcelable {
 
-    @SerializedName("ID")
+    @SerializedName("iD")
     private int iD;
-    @SerializedName("PostId")
+    @SerializedName("postId")
     private String postId;
-    @SerializedName("DateCreate")
+    @SerializedName("dateCreate")
     private String dateCreate;
-    @SerializedName("DateCreateString")
+    @SerializedName("dateCreateString")
     private String dateCreateString;
-    @SerializedName("TimeCreateString")
+    @SerializedName("timeCreateString")
     private String timeCreateString;
-    @SerializedName("DatePost")
+    @SerializedName("datePost")
     private String datePost;
-    @SerializedName("DatePostString")
+    @SerializedName("datePostString")
     private String datePostString;
-    @SerializedName("TimePostString")
+    @SerializedName("timePostString")
     private String timePostString;
-    @SerializedName("Title")
+    @SerializedName("title")
     private String title;
-    @SerializedName("PostDescription")
+    @SerializedName("postDescription")
     private String postDescription;
-    @SerializedName("PostSource")
+    @SerializedName("postSource")
     private String postSource;
-    @SerializedName("LikeMe")
+    @SerializedName("likeMe")
     private Object likeMe;
-    @SerializedName("LikeMeID")
+    @SerializedName("likeMeID")
     private int likeMeID;
-    @SerializedName("LikeCount")
+    @SerializedName("likeCount")
     private int likeCount;
-    @SerializedName("DislikeMe")
+    @SerializedName("dislikeMe")
     private Object dislikeMe;
-    @SerializedName("DislikeMeID")
+    @SerializedName("dislikeMeID")
     private int dislikeMeID;
-    @SerializedName("DislikeCount")
+    @SerializedName("dislikeCount")
     private int dislikeCount;
-    @SerializedName("SeenMe")
+    @SerializedName("seenMe")
     private Object seenMe;
-    @SerializedName("SeenMeID")
+    @SerializedName("seenMeID")
     private int seenMeID;
-    @SerializedName("SeenCount")
+    @SerializedName("seenCount")
     private int seenCount;
-    @SerializedName("Bookmark")
+    @SerializedName("bookmark")
     private int bookmark;
-    @SerializedName("ExpireDate")
+    @SerializedName("expireDate")
     private String expireDate;
-    @SerializedName("ExpireDateString")
+    @SerializedName("expireDateString")
     private String expireDateString;
-    @SerializedName("UserID")
+    @SerializedName("userID")
     private String userID;
-    @SerializedName("Status")
+    @SerializedName("status")
     private int status;
-    @SerializedName("Description")
+    @SerializedName("description")
     private Object description;
 
     protected Posts(Parcel in) {
