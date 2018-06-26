@@ -5,12 +5,14 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -59,8 +61,20 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.recycler_posts)
     RecyclerView recycler_posts;
 
-    @BindView(R.id.ic_profile)
-    AppCompatImageButton ic_profile;
+    @BindView(R.id.imghome)
+    AppCompatImageView imghome;
+
+    @BindView(R.id.imgsearch)
+    AppCompatImageView imgsearch;
+
+    @BindView(R.id.imgadd)
+    AppCompatImageView imgadd;
+
+    @BindView(R.id.imgfavorite)
+    AppCompatImageView imgfavorite;
+
+    ImageView imgprofile;
+
 
     WebserviceCaller webserviceCaller;
 
@@ -147,10 +161,10 @@ public class MainActivity extends BaseActivity {
         List<StoryItem> data = new ArrayList<>();
 
         data.add(new StoryItem(R.drawable.profilestories, "You"));
-        data.add(new StoryItem(R.drawable.english, "English"));
+       /* data.add(new StoryItem(R.drawable.english, "English"));
         data.add(new StoryItem(R.drawable.yjcnews, "Yjc"));
         data.add(new StoryItem(R.drawable.digikalacom, "Digikala"));
-        data.add(new StoryItem(R.drawable.movafaghiatmag, "Movafaghiat"));
+        data.add(new StoryItem(R.drawable.movafaghiatmag, "Movafaghiat"));*/
 
 
         return data;
@@ -202,13 +216,67 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.ic_profile)
-    public void ic_profile_click() {
 
-        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-        startActivity(intent);
+
+    @OnClick(R.id.ic_camera)
+    public void camera2_click() {
+
+
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent,0);
+
 
     }
+
+    @OnClick(R.id.imgsearch)
+    public void imgsearch_click() {
+
+        imgsearch.setColorFilter(R.color.Black, PorterDuff.Mode.SRC_IN);
+        imghome.clearColorFilter();
+        imgadd.clearColorFilter();
+        imgfavorite.clearColorFilter();
+        // imgprofile.clearColorFilter();
+
+    }
+
+    @OnClick(R.id.imghome)
+    public void setImghome_click() {
+
+        imghome.setColorFilter(R.color.Black, PorterDuff.Mode.SRC_IN);
+        imgsearch.clearColorFilter();
+        imgadd.clearColorFilter();
+        imgfavorite.clearColorFilter();
+    }
+
+    @OnClick(R.id.imgadd)
+    public void imgadd_click() {
+
+        imgadd.setColorFilter(R.color.Black, PorterDuff.Mode.SRC_IN);
+        imgsearch.clearColorFilter();
+        imghome.clearColorFilter();
+        imgfavorite.clearColorFilter();
+    }
+
+    @OnClick(R.id.imgfavorite)
+    public void imgfavorite_click() {
+        imgfavorite.setColorFilter(R.color.Black, PorterDuff.Mode.SRC_IN);
+        imgsearch.clearColorFilter();
+        imgadd.clearColorFilter();
+        imghome.clearColorFilter();
+    }
+
+    @OnClick(R.id.imgprofile)
+    public void imgprofile_click() {
+        ImageView imgprofile = (ImageView) findViewById(R.id.imgprofile);
+       // imgprofile.setColorFilter(R.color.Black, PorterDuff.Mode.SRC_IN);
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+        startActivity(intent);
+        imghome.clearColorFilter();
+        imgsearch.clearColorFilter();
+        imgadd.clearColorFilter();
+        imgfavorite.clearColorFilter();
+    }
+
 
     public void getCount(){
 

@@ -4,34 +4,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white">
 
+    <RelativeLayout
+        android:layout_width="110dp"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        android:background="@color/White">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageview"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/profilestories"/>
+
+        <TextView
+            android:id="@+id/txtview"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/imageview"
+            android:layout_alignRight="@id/imageview"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:layout_below="@id/imageview"
+            android:textColor="@color/Black"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="18sp"/>
 
 
-        <LinearLayout
-            android:layout_width="110dp"
-            android:orientation="vertical"
-            android:layout_height="fill_parent"
-            android:background="@android:color/white"
-            >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageview"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/profilestories"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtview"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="10dp"
-                android:text="                      "/>
 
 
-
-        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
