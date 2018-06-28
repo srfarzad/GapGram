@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.gapgram">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -8,8 +9,14 @@
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
     <uses-feature android:name="android.hardware.camera2" android:required="false"/>
 
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
 
     <application
+
         android:name=".AppConfig"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,6 +34,29 @@
 
         <activity android:name=".EditProfile"></activity>
         <activity android:name=".ProfileActivity"></activity>
+
+        <meta-data
+            tools:node="replace"
+            android:name="android.support.VERSION"
+            android:value="26.1.0"
+        />
+
+        <receiver android:name=".service.SmsReciver" android:exported="true" >
+
+            <intent-filter android:priority="999">
+                <action android:name="android.provider.telephony.SMS_RECIEVED"></action>
+            </intent-filter>
+
+        </receiver>
+
+        <receiver android:name=".service.BootStartup" >
+
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+
+        </receiver>
+
     </application>
 
 </manifest>

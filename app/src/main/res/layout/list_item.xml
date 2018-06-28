@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <data>
+
+
+        <variable
+            name="getUserAllPost"
+            type="com.gapgram.model.GetUserAllPost"/>
+
+    </data>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/CL1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/imageViewIcon"
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="Heading"
+                android:text="@{getUserAllPost.userFirstName}"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 app:layout_constraintLeft_toRightOf="@id/imageViewIcon" />
 
@@ -233,9 +233,6 @@
 
         </android.support.constraint.ConstraintLayout>
 
-    </android.support.v7.widget.CardView>
 
 
-
-
-</LinearLayout>
+</layout>
