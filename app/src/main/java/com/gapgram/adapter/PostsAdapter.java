@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gapgram.R;
+import com.gapgram.model.GetUserAllPost;
 import com.gapgram.model.Posts;
 import com.gapgram.serviceCaller.ApiClient;
 import com.squareup.picasso.Picasso;
@@ -21,28 +22,40 @@ import butterknife.ButterKnife;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
-    List<Posts> postsList;
+    List<GetUserAllPost> postsList;
     Context context;
-    public PostsAdapter(Context context, List<Posts> posts){
-        this.postsList=posts;
-        this.context=context;
+
+    public PostsAdapter(Context context, List<GetUserAllPost> posts) {
+        this.postsList = posts;
+        this.context = context;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, null);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        Posts posts=postsList.get(position);
+        GetUserAllPost posts = postsList.get(position);
 
-        holder.textViewHead.setText(posts.getTitle());
-        Picasso.with(context).load(ApiClient.ImagePath+posts.getPostSource()).into( holder.imagePost);
-    //    Picasso.with(context).load(posts.get).into( holder.imageViewIcon);
+        holder.textViewHead.setText(posts.getUserFirstName() + " " + posts.getUserLastName());
+        String imgPath = ApiClient.ImagePath + posts.getPostSource();
+        try {
+            if (!posts.getPostSource().matches("")) {
+                Picasso.with(context)
+                        .load(imgPath).centerCrop().resize(230, 230).centerCrop()
+                        .into(holder.imagePost);
+            } else {
+                holder.imagePost.setImageResource(R.drawable.background_button);
+            }
+        } catch (Exception e) {
+        }
+//        Picasso.with(context).load(ApiClient.ImagePath+posts.getPostSource()).into( holder.imagePost);
+        //    Picasso.with(context).load(posts.get).into( holder.imageViewIcon);
 
     }
 
@@ -51,19 +64,26 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         return postsList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.imageViewIcon)AppCompatImageView imageViewIcon;
-        @BindView(R.id.imagePost)AppCompatImageView imagePost;
-        @BindView(R.id.like)AppCompatImageButton like;
-        @BindView(R.id.comment)AppCompatImageButton comment;
-        @BindView(R.id.message)AppCompatImageButton message;
-        @BindView(R.id.savetocollection)AppCompatImageButton savetocollection;
-        @BindView(R.id.textViewHead)AppCompatTextView textViewHead;
+        @BindView(R.id.imageViewIcon)
+        AppCompatImageView imageViewIcon;
+        @BindView(R.id.imagePost)
+        AppCompatImageView imagePost;
+        @BindView(R.id.like)
+        AppCompatImageButton like;
+        @BindView(R.id.comment)
+        AppCompatImageButton comment;
+        @BindView(R.id.message)
+        AppCompatImageButton message;
+        @BindView(R.id.savetocollection)
+        AppCompatImageButton savetocollection;
+        @BindView(R.id.textViewHead)
+        AppCompatTextView textViewHead;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 

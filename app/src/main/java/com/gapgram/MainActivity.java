@@ -108,7 +108,7 @@ public class MainActivity extends BaseActivity {
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManager);
        horizontal_recycler_view.setAdapter(horizontalAdapter);
 
-        getCount();
+//        getCount();
 /*
         if(NetworkState.checkInternetConnection(getApplicationContext()))
         {
@@ -116,13 +116,17 @@ public class MainActivity extends BaseActivity {
         }*/
 
 
-        try {
+       /* try {
             getPosts();
         } catch (Exception e) {
             e.printStackTrace();
+        }*/
+
+        try {
+            getUserAllPosts();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-
        /* if(ApplicationPermission.isStoragePermissionGranted(MainActivity.this))
         {
 
@@ -302,10 +306,10 @@ public class MainActivity extends BaseActivity {
             public void onSuccess(List responseBody) {
 
                 recyclerView.setAdapter(new PostsAdapter(getApplicationContext()
-                ,responseBody));
+                        ,responseBody));
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()
-                ,LinearLayoutManager.VERTICAL,false));
+                        ,LinearLayoutManager.VERTICAL,false));
 
             }
 
@@ -319,6 +323,30 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    public void getUserAllPosts()throws Exception{
 
+        webserviceCaller.getUserAllPosts(new IListResponse() {
+            @Override
+            public void onSuccess(List responseBody) {
+                Log.d("all", "onSuccess: "+responseBody);
+                try{
+                    recyclerView.setAdapter(new PostsAdapter(getApplicationContext()
+                            ,responseBody));
+
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()
+                            ,LinearLayoutManager.VERTICAL,false));
+                }catch (Exception e){
+                    Log.d("all", "setAdapter: ");
+                }
+            }
+
+            @Override
+            public void onFail() {
+                Log.d("all", "onFail: ");
+            }
+        });
+
+
+    }
 }
 
