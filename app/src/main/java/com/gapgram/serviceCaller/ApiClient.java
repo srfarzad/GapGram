@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "http://mymvc.ir/ApiPosts/";
+    public static final String BASE_URL = "http://mymvc.ir/api/ApiPosts/";
     public static final String ImagePath = "http://mymvc.ir";
 
     private static Retrofit retrofit = null;

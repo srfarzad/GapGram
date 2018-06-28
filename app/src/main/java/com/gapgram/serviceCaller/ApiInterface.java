@@ -1,5 +1,6 @@
 package com.gapgram.serviceCaller;
 
+import com.gapgram.model.GetUserAllPost;
 import com.gapgram.model.Posts;
 
 import java.util.List;
@@ -16,11 +17,8 @@ public interface ApiInterface {
     @GET("GetAllPost")
     Call<List<Posts>> getPosts();
 
-
-
-
-
-
+    @GET("GetUserAllPosts?userID=dd2eccb2-6da8-48f1-b107-cd8558c89b5c")
+    Call<List<GetUserAllPost>> getUserAllPosts();
 
 
 }

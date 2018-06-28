@@ -1,5 +1,6 @@
 package com.gapgram.serviceCaller;
 
+import com.gapgram.model.GetUserAllPost;
 import com.gapgram.model.IListResponse;
 import com.gapgram.model.IResponse;
 import com.gapgram.model.Posts;
@@ -66,6 +67,22 @@ public class WebserviceCaller {
 
     }
 
+    public void getUserAllPosts(final IListResponse listResponse)throws Exception{
 
+        Call<List<GetUserAllPost>> call=apiInterface.getUserAllPosts();
+
+        call.enqueue(new Callback<List<GetUserAllPost>>() {
+            @Override
+            public void onResponse(Call<List<GetUserAllPost>> call, Response<List<GetUserAllPost>> response) {
+                listResponse.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<GetUserAllPost>> call, Throwable t) {
+                listResponse.onFail();
+            }
+        });
+
+    }
 
 }
