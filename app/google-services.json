@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "822056718196",
+    "firebase_url": "https://gapgram-8d40f.firebaseio.com",
+    "project_id": "gapgram-8d40f",
+    "storage_bucket": "gapgram-8d40f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822056718196:android:dd0dd1475fd2a15f",
+        "android_client_info": {
+          "package_name": "com.gapgram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822056718196-9kn9kn01kbb8ncp63gg3ppa8sc8hoif2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gapgram",
+            "certificate_hash": "cc5aed6b982049e5b2c2fcf83245307c17919f46"
+          }
+        },
+        {
+          "client_id": "822056718196-ff96ce90cnpg649okraivd4o6ci0rpuj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKGY_FDNMCuhEAl-kvv-q7LzsQp3ToXmU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822056718196-ff96ce90cnpg649okraivd4o6ci0rpuj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

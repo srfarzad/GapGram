@@ -57,6 +57,26 @@
 
         </receiver>
 
+
+        <service android:name=".service.UpdateLocationService"/>
+
+        <receiver android:name=".service.MyReciver" android:exported="true">
+
+            <intent-filter>
+
+                <action android:name="com.android.gapgram2"></action>
+
+            </intent-filter>
+
+        </receiver>
+
+        <service android:name=".service.GameService">
+            <intent-filter>
+                <action android:name="com.gapgram"></action>
+            </intent-filter>
+
+        </service>
+
     </application>
 
 </manifest>

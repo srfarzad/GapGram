@@ -32,6 +32,8 @@ import com.framework.utility.NetworkState;
 import com.gapgram.adapter.PostsAdapter;
 import com.gapgram.model.IListResponse;
 import com.gapgram.model.IResponse;
+import com.gapgram.model.LauncherService;
+import com.gapgram.service.GameServiceCenter;
 import com.gapgram.serviceCaller.WebserviceCaller;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -152,6 +154,20 @@ public class MainActivity extends BaseActivity {
                     }
                 }).check();
 
+
+        GameServiceCenter gameServiceCenter=new GameServiceCenter();
+
+        gameServiceCenter.init(getApplicationContext(), "com.android.gapgram2", new LauncherService() {
+            @Override
+            public void onResult(GameService gameInterface) {
+                Log.e("","");
+            }
+
+            @Override
+            public void onFail(String ErrorMessage) {
+                Log.e("","");
+            }
+        });
 
     }
 
