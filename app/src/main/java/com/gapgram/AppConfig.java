@@ -2,6 +2,8 @@ package com.gapgram;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.gapgram.service.notification.MyNotificationOpenedHandler;
 import com.gapgram.service.notification.MyNotificationReceivedHandler;
@@ -9,7 +11,7 @@ import com.onesignal.OneSignal;
 
 import io.realm.Realm;
 
-public class AppConfig extends Application {
+public class AppConfig extends MultiDexApplication {
 
     public static final String TAG = AppConfig.class
             .getSimpleName();
@@ -33,6 +35,7 @@ public class AppConfig extends Application {
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
+        //MultiDex.install(this);
       /*  OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)

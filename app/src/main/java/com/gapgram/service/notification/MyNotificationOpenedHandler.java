@@ -24,12 +24,12 @@ public class MyNotificationOpenedHandler implements OneSignal.NotificationOpened
         JSONObject data = result.notification.payload.additionalData;
         String activityToBeOpened;
         String type="",contentText="";
-        try {
-            type=data.getString("type");
-            contentText=data.getString("contentText");
+       /* try {
+           // type=data.getString("type");
+          //  contentText=data.getString("contentText");
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         if (data != null) {
