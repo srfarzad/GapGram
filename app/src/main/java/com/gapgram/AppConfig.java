@@ -7,6 +7,8 @@ import android.support.multidex.MultiDexApplication;
 
 import com.gapgram.service.notification.MyNotificationOpenedHandler;
 import com.gapgram.service.notification.MyNotificationReceivedHandler;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.onesignal.OneSignal;
 
 import io.realm.Realm;
@@ -18,6 +20,12 @@ public class AppConfig extends MultiDexApplication {
 
     private static AppConfig mInstance;
     private static AppConfig appInstance;
+
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
+
+
+
 
     // public AppConfiguration appInstance;
 
@@ -45,5 +53,23 @@ public class AppConfig extends MultiDexApplication {
                 .setNotificationReceivedHandler( new MyNotificationReceivedHandler() )
                 .init();
 
+        sAnalytics = GoogleAnalytics.getInstance(this);
+
+
     }
+
+    synchronized public Tracker getDefaultTracker() {
+        // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+        if (sTracker == null) {
+            sTracker = sAnalytics.newTracker(R.xml.global_tracker);
+        }
+
+        return sTracker;
+    }
+
+
+
+
+
+
 }

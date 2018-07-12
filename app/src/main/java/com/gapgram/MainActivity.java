@@ -30,11 +30,21 @@ import android.widget.Toast;
 import com.framework.permissions.ApplicationPermission;
 import com.framework.utility.NetworkState;
 import com.gapgram.adapter.PostsAdapter;
+import com.gapgram.dagger.DaggerUserComponent;
+import com.gapgram.dagger.UserComponent;
+import com.gapgram.dagger.UserModule;
 import com.gapgram.model.IListResponse;
 import com.gapgram.model.IResponse;
 import com.gapgram.model.LauncherService;
 import com.gapgram.service.GameServiceCenter;
 import com.gapgram.serviceCaller.WebserviceCaller;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -45,6 +55,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -80,11 +91,17 @@ public class MainActivity extends BaseActivity {
 
     WebserviceCaller webserviceCaller;
 
+    FirebaseAuth auth;
+
+    FirebaseAnalytics analytics;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         webserviceCaller=new WebserviceCaller();
+        auth = FirebaseAuth.getInstance();
+        analytics=FirebaseAnalytics.getInstance(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_posts);
 
@@ -168,6 +185,43 @@ public class MainActivity extends BaseActivity {
                 Log.e("","");
             }
         });
+
+
+        UserComponent component=DaggerUserComponent.builder().
+                userModule(new UserModule()).build();
+
+        component.provideUser().deleteUserMail();
+
+
+        auth.createUserWithEmailAndPassword("sr.farzad@gmail.com","123@mnbE#")
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Authentication failed." + task.getException(),
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            startActivity(new Intent(MainActivity.this, MainActivity.class));
+                            finish();
+                        }
+                    }
+                });
+
+
+
+        Bundle bundle=new Bundle();
+
+        bundle.putString("user","1");
+
+
+        analytics.logEvent(FirebaseAnalytics.Event.APP_OPEN,bundle);
+
+
+        AppConfig application = (AppConfig) getApplication();
+        Tracker mTracker = application.getDefaultTracker();
+       // Log.i(TAG, "Setting screen name: " + name);
+        mTracker.setScreenName("main Activity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
     }
 
