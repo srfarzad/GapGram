@@ -3,16 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.gapgram">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera2" android:required="false"/>
 
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="false" />
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 
     <application
@@ -36,12 +41,13 @@
         <activity android:name=".activity.fragments.ProfileActivity"></activity>
 
         <meta-data
-            tools:node="replace"
             android:name="android.support.VERSION"
             android:value="26.1.0"
-        />
+            tools:node="replace" />
 
-        <receiver android:name=".service.SmsReciver" android:exported="true" >
+        <receiver
+            android:name=".service.SmsReciver"
+            android:exported="true">
 
             <intent-filter android:priority="999">
                 <action android:name="android.provider.telephony.SMS_RECIEVED"></action>
@@ -49,18 +55,20 @@
 
         </receiver>
 
-        <receiver android:name=".service.BootStartup" >
+        <receiver android:name=".service.BootStartup">
 
-            <intent-filter >
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
 
         </receiver>
 
 
-        <service android:name=".service.UpdateLocationService"/>
+        <service android:name=".service.UpdateLocationService" />
 
-        <receiver android:name=".service.MyReciver" android:exported="true">
+        <receiver
+            android:name=".service.MyReciver"
+            android:exported="true">
 
             <intent-filter>
 
@@ -76,6 +84,17 @@
             </intent-filter>
 
         </service>
+
+        <receiver android:name=".widget.AppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_provider" />
+        </receiver>
+
 
     </application>
 
