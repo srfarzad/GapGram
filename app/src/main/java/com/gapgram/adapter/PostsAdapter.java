@@ -1,106 +1,76 @@
 package com.gapgram.adapter;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.v7.widget.AppCompatImageButton;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.gapgram.BR;
 import com.gapgram.R;
 import com.gapgram.model.GetUserAllPost;
-import com.gapgram.model.Posts;
 import com.gapgram.serviceCaller.ApiClient;
 import com.squareup.picasso.Picasso;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
+public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MainViewHolder> {
 
-    List<GetUserAllPost> postsList;
-    Context context;
+    private Context Context;
+    private List<GetUserAllPost> mList = new ArrayList<>();
 
-    public PostsAdapter(Context context, List<GetUserAllPost> posts) {
-        this.postsList = posts;
-        this.context = context;
+
+    public PostsAdapter(Context context) {
+        this.Context = context;
+    }
+
+    public void setPosts(List<GetUserAllPost> list) {
+        this.mList = list;
+        notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MainViewHolder(LayoutInflater.from(Context).inflate(R.layout.cmlist_post,
+                parent, false));
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ViewDataBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.list_item, parent, false);
-        return new ViewHolder(binding);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-
-      GetUserAllPost posts = postsList.get(position);
-
-      holder.bind(posts);
-
- /*
-        holder.textViewHead.setText(posts.getUserFirstName() + " " + posts.getUserLastName());
-        String imgPath = ApiClient.ImagePath + posts.getPostSource();
-        try {
-            if (!posts.getPostSource().matches("")) {
-                Picasso.with(context)
-                        .load(imgPath).centerCrop().resize(230, 230).centerCrop()
-                        .into(holder.imagePost);
-            } else {
-                holder.imagePost.setImageResource(R.drawable.background_button);
-            }
-        } catch (Exception e) {
-        }*/
-//        Picasso.with(context).load(ApiClient.ImagePath+posts.getPostSource()).into( holder.imagePost);
-        //    Picasso.with(context).load(posts.get).into( holder.imageViewIcon);
-
+    public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
+        holder.bindAppCategory(mList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return postsList.size();
+        return mList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
 
-     /*   @BindView(R.id.imageViewIcon)
-        AppCompatImageView imageViewIcon;
-        @BindView(R.id.imagePost)
-        AppCompatImageView imagePost;
-        @BindView(R.id.like)
-        AppCompatImageButton like;
-        @BindView(R.id.comment)
-        AppCompatImageButton comment;
-        @BindView(R.id.message)
-        AppCompatImageButton message;
-        @BindView(R.id.savetocollection)
-        AppCompatImageButton savetocollection;
-        @BindView(R.id.textViewHead)
-        AppCompatTextView textViewHead;
-*/
+    public class MainViewHolder extends RecyclerView.ViewHolder {
+        private LinearLayout ln_backgroundItemsMain;
+        private TextView textViewHead;
+        ImageView imagePost;
 
-        ViewDataBinding binding;
-
-        public ViewHolder(ViewDataBinding binding) {
-            super(binding.getRoot());
-            this.binding=binding;
-            //ButterKnife.bind(this, itemView);
+        public MainViewHolder(View itemView) {
+            super(itemView);
+            imagePost = itemView.findViewById(R.id.imagePost);
+            textViewHead = itemView.findViewById(R.id.textViewHead);
         }
 
-        public void bind(Object GetUserAllPost) {
-            binding.setVariable(BR.getUserAllPost,GetUserAllPost);
-            binding.executePendingBindings();
+        public void bindAppCategory(GetUserAllPost post) {
+            textViewHead.setText(post.getUserFirstName());
+
+            Picasso.with(Context).load(ApiClient.ImagePath + post.getPostSource())
+                    .error(R.drawable.digikalacom)
+                    .into(imagePost);
         }
     }
+
 
 }

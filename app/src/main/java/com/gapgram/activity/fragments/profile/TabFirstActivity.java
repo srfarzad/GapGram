@@ -1,8 +1,10 @@
-package com.gapgram;
+package com.gapgram.activity.fragments.profile;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import com.gapgram.R;
 
 import butterknife.BindView;
 
@@ -10,12 +12,12 @@ import butterknife.BindView;
  * Created by setareh on 6/12/2018.
  */
 
-public class TabFourthActivity extends Presenter{
+public class TabFirstActivity extends Presenter {
 
-    @BindView(R.id.txt4)
-    TextView txt4;
+    @BindView(R.id.txt1)
+    TextView txt1;
 
-    public TabFourthActivity(AppCompatActivity activity, View view) {
+    public TabFirstActivity(AppCompatActivity activity, View view) {
         super(activity, view);
     }
 

@@ -1,4 +1,4 @@
-package com.gapgram;
+package com.gapgram.activity.fragments.profile;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;

@@ -17,14 +17,12 @@ public class WebserviceCaller {
 
     ApiInterface apiInterface;
 
-    public WebserviceCaller(){
-        apiInterface=ApiClient.getRetrofit().create(ApiInterface.class);
+    public WebserviceCaller() {
+        apiInterface = ApiClient.getRetrofit().create(ApiInterface.class);
     }
 
-
-    public void getPostCount(final IResponse iResponse){
-
-        Call<ResponseBody> call=apiInterface.getPostCount();
+    public void getPostCount(final IResponse iResponse) {
+        Call<ResponseBody> call = apiInterface.getPostCount();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -33,26 +31,19 @@ public class WebserviceCaller {
                     iResponse.onSuccess(response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
                 iResponse.onFail();
             }
         });
-
-
     }
 
-
-    public void getPosts(final IListResponse listResponse)throws Exception{
-
-        Call<List<Posts>> call=apiInterface.getPosts();
-
+    public void getPosts(final IListResponse listResponse) throws Exception {
+        Call<List<Posts>> call = apiInterface.getPosts();
         call.enqueue(new Callback<List<Posts>>() {
             @Override
             public void onResponse(Call<List<Posts>> call, Response<List<Posts>> response) {
@@ -64,17 +55,16 @@ public class WebserviceCaller {
                 listResponse.onFail();
             }
         });
-
     }
 
-    public void getUserAllPosts(final IListResponse listResponse)throws Exception{
-
-        Call<List<GetUserAllPost>> call=apiInterface.getUserAllPosts();
-
+    public void getUserAllPosts(final IListResponse listResponse) throws Exception {
+        Call<List<GetUserAllPost>> call = apiInterface.getUserAllPosts();
         call.enqueue(new Callback<List<GetUserAllPost>>() {
             @Override
             public void onResponse(Call<List<GetUserAllPost>> call, Response<List<GetUserAllPost>> response) {
-                listResponse.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    listResponse.onSuccess(response.body());
+                }
             }
 
             @Override
@@ -82,7 +72,5 @@ public class WebserviceCaller {
                 listResponse.onFail();
             }
         });
-
     }
-
 }

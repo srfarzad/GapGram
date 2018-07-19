@@ -1,4 +1,4 @@
-package com.gapgram;
+package com.gapgram.activity.fragments;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -9,6 +9,11 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 
+import com.gapgram.R;
+import com.gapgram.activity.fragments.profile.TabFirstActivity;
+import com.gapgram.activity.fragments.profile.TabFourthActivity;
+import com.gapgram.activity.fragments.profile.TabSecondActivity;
+import com.gapgram.activity.fragments.profile.TabThirdActivity;
 import com.gapgram.adapter.ViewPagerAdapter;
 
 import butterknife.BindView;

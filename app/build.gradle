@@ -1,19 +1,23 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'com.google.gms.google-services'
+
+
 android {
     compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.gapgram"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        dataBinding.enabled = true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        dataBinding.enabled = true
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
+
         manifestPlaceholders = [
-                onesignal_app_id: 'ee68915b-248c-4469-837c-5e1057fde67d',
+                onesignal_app_id               : 'ee68915b-248c-4469-837c-5e1057fde67d',
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]
@@ -31,28 +35,34 @@ android {
 }
 
 dependencies {
+    implementation project(':framework')
+    implementation files('libs/picasso-2.5.2.jar')
+
+    implementation 'com.android.support:support-v4:27.1.1'
+    ext { supportLibVersion = '27.1.1' }
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:0.5'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
-    implementation 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    implementation "com.android.support:design:${supportLibVersion}"
+    implementation "com.android.support:support-v13:${supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
+    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation "com.android.support:support-v4:${supportLibVersion}"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
-    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
-    implementation files('libs/picasso-2.5.2.jar')
-    implementation project(':framework')
+
     implementation 'com.karumi:dexter:4.2.0'
     implementation 'io.realm:realm-annotations-processor:5.3.0'
-    annotationProcessor 'com.android.databinding:compiler:2.3.0'
-    implementation 'com.onesignal:OneSignal:[3.9.1, 3.99.99]'
+//    annotationProcessor 'com.android.databinding:compiler:3.2.0-alpha10'
+    implementation 'com.onesignal:OneSignal:3.4.1'
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.android.support:design:27.1.0'
-    implementation 'com.android.support:recyclerview-v7:27.1.0'
-    implementation 'com.android.support:cardview-v7:27.1.1'
 
     implementation 'com.google.dagger:dagger:2.11'
     implementation 'com.google.dagger:dagger-android:2.11'
@@ -61,5 +71,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.2'
     implementation 'com.google.android.gms:play-services-analytics:16.0.1'
+
 }
-apply plugin: 'com.google.gms.google-services'

@@ -1,4 +1,4 @@
-package com.gapgram;
+package com.gapgram.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.gapgram.R;
+import com.gapgram.model.StoryItem;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.gapgram;
+package com.gapgram.activity.fragments;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.gapgram.R;
 import com.gapgram.realm.UserProfile;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

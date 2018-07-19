@@ -1,8 +1,7 @@
 
 package com.gapgram.model;
 
-
-public class GetUserAllPost {
+public class GetUserAllPost  {
 
     private String postID;
     private String userID;
