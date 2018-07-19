@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.gapgram.R;
 import com.gapgram.activity.fragments.MainPostsFragment;
 import com.gapgram.activity.fragments.ProfileActivity;
+import com.gapgram.activity.fragments.profileFragment;
 
 
 /**
@@ -23,6 +24,7 @@ public class MainFragmentActivity extends BaseActivity {
     }
 
     AppCompatImageView ic_camera;
+            ImageView imgprofile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainFragmentActivity extends BaseActivity {
         clickListener();
 
         ic_camera=findViewById(R.id.ic_camera);
+        imgprofile=findViewById(R.id.imgprofile);
 
 
         ic_camera.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +47,14 @@ public class MainFragmentActivity extends BaseActivity {
 
             }
         });
+        imgprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profileFragment profileFragment=new profileFragment();
+                selectedFragment(profileFragment);
+            }
+        });
+
 
 
     }
@@ -64,6 +75,11 @@ public class MainFragmentActivity extends BaseActivity {
 
     public void clickListener() {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        removeFragment();
     }
 
 
